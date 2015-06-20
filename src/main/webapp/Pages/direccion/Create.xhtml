@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DireccionCreateDlg" widgetVar="DireccionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDireccionTitle}">
+            <h:form id="DireccionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{direccionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDireccionLabel_callePrincipal}" for="callePrincipal" />
+                        <p:inputText id="callePrincipal" value="#{direccionController.selected.callePrincipal}" title="#{bundle.CreateDireccionTitle_callePrincipal}" required="true" requiredMessage="#{bundle.CreateDireccionRequiredMessage_callePrincipal}"/>
+                        <p:outputLabel value="#{bundle.CreateDireccionLabel_calleSecundaria}" for="calleSecundaria" />
+                        <p:inputText id="calleSecundaria" value="#{direccionController.selected.calleSecundaria}" title="#{bundle.CreateDireccionTitle_calleSecundaria}" required="true" requiredMessage="#{bundle.CreateDireccionRequiredMessage_calleSecundaria}"/>
+                        <p:outputLabel value="#{bundle.CreateDireccionLabel_codigoPostal}" for="codigoPostal" />
+                        <p:inputText id="codigoPostal" value="#{direccionController.selected.codigoPostal}" title="#{bundle.CreateDireccionTitle_codigoPostal}" required="true" requiredMessage="#{bundle.CreateDireccionRequiredMessage_codigoPostal}"/>
+                        <p:outputLabel value="#{bundle.CreateDireccionLabel_idDireccion}" for="idDireccion" />
+                        <p:inputText id="idDireccion" value="#{direccionController.selected.idDireccion}" title="#{bundle.CreateDireccionTitle_idDireccion}" required="true" requiredMessage="#{bundle.CreateDireccionRequiredMessage_idDireccion}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{direccionController.create}" value="#{bundle.Save}" update="display,:DireccionListForm:datalist,:growl" oncomplete="handleSubmit(args,'DireccionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DireccionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

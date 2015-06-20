@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TarjetaCreateDlg" widgetVar="TarjetaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTarjetaTitle}">
+            <h:form id="TarjetaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tarjetaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTarjetaLabel_idTarjeta}" for="idTarjeta" />
+                        <p:inputText id="idTarjeta" value="#{tarjetaController.selected.idTarjeta}" title="#{bundle.CreateTarjetaTitle_idTarjeta}" required="true" requiredMessage="#{bundle.CreateTarjetaRequiredMessage_idTarjeta}"/>
+                        <p:outputLabel value="#{bundle.CreateTarjetaLabel_numero}" for="numero" />
+                        <p:inputText id="numero" value="#{tarjetaController.selected.numero}" title="#{bundle.CreateTarjetaTitle_numero}" required="true" requiredMessage="#{bundle.CreateTarjetaRequiredMessage_numero}"/>
+                        <p:outputLabel value="#{bundle.CreateTarjetaLabel_numeroSeguridad}" for="numeroSeguridad" />
+                        <p:inputText id="numeroSeguridad" value="#{tarjetaController.selected.numeroSeguridad}" title="#{bundle.CreateTarjetaTitle_numeroSeguridad}" required="true" requiredMessage="#{bundle.CreateTarjetaRequiredMessage_numeroSeguridad}"/>
+                        <p:outputLabel value="#{bundle.CreateTarjetaLabel_tipo}" for="tipo" />
+                        <p:inputText id="tipo" value="#{tarjetaController.selected.tipo}" title="#{bundle.CreateTarjetaTitle_tipo}" required="true" requiredMessage="#{bundle.CreateTarjetaRequiredMessage_tipo}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tarjetaController.create}" value="#{bundle.Save}" update="display,:TarjetaListForm:datalist,:growl" oncomplete="handleSubmit(args,'TarjetaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TarjetaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
