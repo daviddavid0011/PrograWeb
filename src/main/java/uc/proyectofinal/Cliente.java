@@ -35,6 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Cliente.findByDireccion", query = "SELECT c FROM Cliente c WHERE c.direccion = :direccion")})
 
 
+
+
 public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
