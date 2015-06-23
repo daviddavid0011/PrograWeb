@@ -19,6 +19,7 @@ public class RingView implements Serializable {
     private List<Car> cars;
     private Car selectedCar;
      
+    
     @PostConstruct
     public void init() {
         cars = new ArrayList<Car>();

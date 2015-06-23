@@ -19,26 +19,51 @@ and open the template in the editor.
         <p:ring id="custom" value="#{ringView.cars}" var="car" styleClass="image-ring" easing="easeInOutBack">
             <p:graphicImage id="img" name="/demo/images/car/#{car.brand}.gif" />
         </p:ring>
-          <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="170">
-        <p:outputPanel id="carDetail" style="text-align:center;" layout="block">
-            <p:panelGrid  columns="2" rendered="#{not empty ringView.selectedCar}" columnClasses="value">
-                <f:facet name="header">
-                    <p:graphicImage name="demo/images/car/#{ringView.selectedCar.brand}-big.gif" /> 
-                </f:facet>
- 
-                <h:outputText value="Id:" />
-                <h:outputText value="#{ringView.selectedCar.id}" />
- 
-                <h:outputText value="Year" />
-                <h:outputText value="#{ringView.selectedCar.year}" />
- 
-                <h:outputText value="Brand: " />
-                <h:outputText value="#{ringView.selectedCar.brand}" />
- 
-                <h:outputText value="Color:" />
-                <h:outputText value="#{ringView.selectedCar.color}" style="color:#{ringView.selectedCar.color}" />
-            </p:panelGrid>
-        </p:outputPanel>
-    </p:dialog>
+        <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="170">
+            <p:outputPanel id="carDetail" style="text-align:center;" layout="block">
+                <p:panelGrid  columns="2" rendered="#{not empty ringView.selectedCar}" columnClasses="value">
+                    <f:facet name="header">
+                        <p:graphicImage name="demo/images/car/#{ringView.selectedCar.brand}-big.gif" /> 
+                    </f:facet>
+
+                    <h:outputText value="Id:" />
+                    <h:outputText value="#{ringView.selectedCar.id}" />
+
+                    <h:outputText value="Year" />
+                    <h:outputText value="#{ringView.selectedCar.year}" />
+
+                    <h:outputText value="Brand: " />
+                    <h:outputText value="#{ringView.selectedCar.brand}" />
+
+                    <h:outputText value="Color:" />
+                    <h:outputText value="#{ringView.selectedCar.color}" style="color:#{ringView.selectedCar.color}" />
+                </p:panelGrid>
+            </p:outputPanel>
+        </p:dialog>
+
+        <h:form>
+            <p:fileUpload fileUploadListener="#{fileUploadView.handleFileUpload}" mode="advanced" dragDropSupport="false"
+                          multiple="true" update="messages" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+            <p:growl id="messages" showDetail="true" />
+        </h:form>
+
+        <h:form>
+            <p:galleria value="#{imagesView.images}" var="image" panelWidth="500" panelHeight="313" showCaption="true">
+                <p:graphicImage name="demo/images/nature/#{image}" alt="Image Description for #{image}" title="#{image}"/>
+            </p:galleria>
+        </h:form>
+        <h3 style="margin-top:0">Manual</h3>
+        <p:commandButton type="button" onclick="PF('switcher').previous();"
+                         icon="ui-icon-circle-triangle-w" id="prev"/>
+        <p:commandButton type="button" onclick="PF('switcher').next();"
+                         icon="ui-icon-circle-triangle-e" id="next"/>
+
+        <p:imageSwitch effect="wipe" widgetVar="switcher" id="manuelSwitcher"
+                       slideshowAuto="false">
+            <ui:repeat value="#{imagesView.images}" var="image" id="manuelSwitcherImages">
+                <p:graphicImage name="/demo/images/nature/#{image}" id="image"/>
+            </ui:repeat>
+        </p:imageSwitch>
     </h:body>
 </html>
