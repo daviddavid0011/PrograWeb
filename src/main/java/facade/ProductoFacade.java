@@ -6,9 +6,12 @@
 
 package facade;
 
+import static java.util.Collections.list;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import uc.proyectofinal.Producto;
 
 /**
@@ -27,6 +30,17 @@ public class ProductoFacade extends AbstractFacade<Producto> {
 
     public ProductoFacade() {
         super(Producto.class);
+    }
+    
+    //Personal
+    
+    public List<Producto> devolverProductos(double x){
+        Query query= this.em.createNamedQuery(Producto.precioLimite);
+        query.setParameter("precio", x);
+        
+        return query.getResultList();
+    
+    
     }
     
 }

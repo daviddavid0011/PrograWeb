@@ -31,8 +31,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Producto.findByStock", query = "SELECT p FROM Producto p WHERE p.stock = :stock"),
     @NamedQuery(name = "Producto.findByPrecio", query = "SELECT p FROM Producto p WHERE p.precio = :precio"),
     @NamedQuery(name = "Producto.findByDescripcion", query = "SELECT p FROM Producto p WHERE p.descripcion = :descripcion"),
-    @NamedQuery(name = "Producto.findByCategoria", query = "SELECT p FROM Producto p WHERE p.categoria = :categoria")})
+    @NamedQuery(name = "Producto.findByCategoria", query = "SELECT p FROM Producto p WHERE p.categoria = :categoria"),
+    
+    @NamedQuery(name = "Producto.precio", query = "SELECT p FROM Producto p WHERE p.precio < :precio")
+
+})
+
 public class Producto implements Serializable {
+    public static final String precioLimite="Producto.precio";
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)

@@ -1,23 +1,26 @@
 package controller;
 
-import uc.proyectofinal.Producto;
 import controller.util.JsfUtil;
 import controller.util.JsfUtil.PersistAction;
 import facade.ProductoFacade;
-
+import java.io.File;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Named;
+import javax.servlet.ServletContext;
+import uc.proyectofinal.FileUploadView;
+import uc.proyectofinal.Producto;
 
 @Named("productoController")
 @SessionScoped
@@ -27,10 +30,37 @@ public class ProductoController implements Serializable {
     private facade.ProductoFacade ejbFacade;
     private List<Producto> items = null;
     private Producto selected;
-
+    private FileUploadView fuv;
+    private List<String> imagenes;
+    private File directorio;
     public ProductoController() {
+        fuv=new FileUploadView();
+        
     }
+    
+    public void seleccionCategoria(){
+        getFuv().setCategoria(selected.getCategoria());
+        System.out.println("categoria: "+getFuv().getCategoria());
+        if (fuv.getCategoria()!=null) {
+            
+            ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance()
+                    .getExternalContext().getContext();
+            String path= ctx.getRealPath("/")+"resources/demo/images/";
+            directorio = new File(path+getFuv().getCategoria());
+            System.out.println("direc: "+directorio);
+            System.out.println(directorio.exists());
+            String[] ficheros = directorio.list();
+            System.out.println("d "+ficheros.length);
+            imagenes=new ArrayList<>();
 
+            for (int i = 0; i < ficheros.length; i++) {
+                
+                imagenes.add(ficheros[i]);
+                System.out.println(ficheros[i]);
+            }
+        }
+       
+    }
     public Producto getSelected() {
         return selected;
     }
@@ -119,6 +149,34 @@ public class ProductoController implements Serializable {
 
     public List<Producto> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+
+    /**
+     * @return the fuv
+     */
+    public FileUploadView getFuv() {
+        return fuv;
+    }
+
+    /**
+     * @param fuv the fuv to set
+     */
+    public void setFuv(FileUploadView fuv) {
+        this.fuv = fuv;
+    }
+
+    /**
+     * @return the imagenes
+     */
+    public List<String> getImagenes() {
+        return imagenes;
+    }
+
+    /**
+     * @param imagenes the imagenes to set
+     */
+    public void setImagenes(List<String> imagenes) {
+        this.imagenes = imagenes;
     }
 
     @FacesConverter(forClass = Producto.class)

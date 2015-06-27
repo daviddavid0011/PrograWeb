@@ -16,7 +16,9 @@ import org.primefaces.model.UploadedFile;
 
 @ManagedBean
 public class FileUploadView {
+    String categoria;
 
+    
     public void handleFileUpload(FileUploadEvent event) {
         FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, message);
@@ -24,7 +26,7 @@ public class FileUploadView {
            
             ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance()
                     .getExternalContext().getContext();
-            String path= ctx.getRealPath("/")+"resources/demo/images";
+            String path= ctx.getRealPath("/")+"resources/demo/images/"+categoria;
             
             
             File targetFolder = new File(path);
@@ -45,5 +47,12 @@ public class FileUploadView {
         }
         
        
+    }
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 }
