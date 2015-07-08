@@ -27,7 +27,7 @@ public class ClienteController implements Serializable {
     private facade.ClienteFacade ejbFacade;
     private List<Cliente> items = null;
     private Cliente selected;
-
+    
     public ClienteController() {
     }
 

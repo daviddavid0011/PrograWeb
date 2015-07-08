@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package uc.proyectofinal;
+package controller;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -20,10 +20,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Reparador
+ * @author David
  */
 @Entity
-@Table(catalog = "prograweb", schema = "")
+@Table(catalog="prograweb",name = "cliente")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c"),
@@ -33,55 +33,48 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Cliente.findByApellidos", query = "SELECT c FROM Cliente c WHERE c.apellidos = :apellidos"),
     @NamedQuery(name = "Cliente.findByPassword", query = "SELECT c FROM Cliente c WHERE c.password = :password"),
     @NamedQuery(name = "Cliente.findByDireccion", query = "SELECT c FROM Cliente c WHERE c.direccion = :direccion")})
-
-
-
-
-public class Cliente implements Serializable {
+public class ClienteR implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
-    @Column(nullable = false, length = 30)
+    @Column(name = "correo")
     private String correo;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_cliente", nullable = false)
+    @Column(name = "id_cliente")
     private Integer idCliente;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
-    @Column(nullable = false, length = 50)
+    @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
-    @Column(nullable = false, length = 50)
+    @Column(name = "apellidos")
     private String apellidos;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 700)
-    @Column(nullable = false, length = 700)
+    @Size(max = 700)
+    @Column(name = "password")
     private String password;
     @Basic(optional = false)
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "direccion")
     private int direccion;
 
-    public Cliente() {
+    public ClienteR() {
     }
 
-    public Cliente(Integer idCliente) {
+    public ClienteR(Integer idCliente) {
         this.idCliente = idCliente;
     }
 
-    public Cliente(Integer idCliente, String correo, String nombre, String apellidos, String password, int direccion) {
+    public ClienteR(Integer idCliente, String correo, String nombre, String apellidos, int direccion) {
         this.idCliente = idCliente;
         this.correo = correo;
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.password = password;
         this.direccion = direccion;
     }
 
@@ -143,10 +136,10 @@ public class Cliente implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cliente)) {
+        if (!(object instanceof ClienteR)) {
             return false;
         }
-        Cliente other = (Cliente) object;
+        ClienteR other = (ClienteR) object;
         if ((this.idCliente == null && other.idCliente != null) || (this.idCliente != null && !this.idCliente.equals(other.idCliente))) {
             return false;
         }
@@ -155,7 +148,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "uc.proyectofinal.Cliente[ idCliente=" + idCliente + " ]";
+        return "controller.Cliente[ idCliente=" + idCliente + " ]";
     }
     
 }
