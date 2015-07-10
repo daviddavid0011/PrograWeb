@@ -75,6 +75,7 @@ public class ProductoFacadeREST extends AbstractFacade<ProductoR> {
         return super.findRange(new int[]{from, to});
     }
 
+    
     @GET
     @Path("count")
     @Produces("text/plain")

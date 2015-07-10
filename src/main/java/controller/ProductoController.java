@@ -40,13 +40,14 @@ public class ProductoController implements Serializable {
     
     public void seleccionCategoria(){
         getFuv().setCategoria(selected.getCategoria());
+        fuv.setId(selected.getIdProducto().toString());
         System.out.println("categoria: "+getFuv().getCategoria());
         if (fuv.getCategoria()!=null) {
             
             ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance()
                     .getExternalContext().getContext();
             String path= ctx.getRealPath("/")+"resources/demo/images/";
-            directorio = new File(path+getFuv().getCategoria());
+            directorio = new File(path+getFuv().getCategoria()+"/"+getFuv().getId());
             System.out.println("direc: "+directorio);
             System.out.println(directorio.exists());
             String[] ficheros = directorio.list();

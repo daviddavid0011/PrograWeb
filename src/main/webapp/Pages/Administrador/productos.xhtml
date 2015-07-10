@@ -86,7 +86,7 @@ and open the template in the editor.
               
                 <h:form id="ImagenesListForm">
                     <p:galleria id="galeria" value="#{productoController.imagenes}" var="image" panelWidth="500" panelHeight="313" showCaption="true">
-                        <p:graphicImage name="demo/images/#{productoController.fuv.categoria}/#{image}" alt="Image Description for #{image}" title="#{image}"/>
+                        <p:graphicImage name="demo/images/#{productoController.fuv.categoria}/#{productoController.fuv.id}/#{image}" alt="Image Description for #{image}" title="#{image}"/>
                     </p:galleria>
                 </h:form>
                 <h:outputText></h:outputText>

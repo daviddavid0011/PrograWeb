@@ -49,10 +49,10 @@ public class Producto implements Serializable {
     @NotNull
     @Column(nullable = false)
     private int stock;
-    @Basic(optional = false)
-    @NotNull
-    @Column(nullable = false)
-    private short precio;
+        @Basic(optional = false)
+        @NotNull
+        @Column(nullable = false)
+        private short precio;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)

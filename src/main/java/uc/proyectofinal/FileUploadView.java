@@ -17,6 +17,7 @@ import org.primefaces.model.UploadedFile;
 @ManagedBean
 public class FileUploadView {
     String categoria;
+    private String id;
 
     
     public void handleFileUpload(FileUploadEvent event) {
@@ -26,14 +27,16 @@ public class FileUploadView {
            
             ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance()
                     .getExternalContext().getContext();
-            String path= ctx.getRealPath("/")+"resources/demo/images/"+categoria;
+            String path= ctx.getRealPath("/")+"resources/demo/images/"+categoria+"/"+id;
             
+            crearDirectorio(path);
             
             File targetFolder = new File(path);
             InputStream inputStream = event.getFile().getInputstream();
             OutputStream out = new FileOutputStream(new File(targetFolder,
                     event.getFile().getFileName()));
             int read = 0;
+            
             byte[] bytes = new byte[1024];
             System.out.println(targetFolder.getAbsolutePath());
             while ((read = inputStream.read(bytes)) != -1) {
@@ -48,11 +51,33 @@ public class FileUploadView {
         
        
     }
+    public void crearDirectorio(String ruta){
+        File f=new File(ruta);
+        if (!f.exists()) {
+            f.mkdirs();
+        }
+    }
+    
+    
     public String getCategoria() {
         return categoria;
     }
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
     }
 }
