@@ -48,7 +48,10 @@ public class ClienteController implements Serializable {
     private ClienteFacade getFacade() {
         return ejbFacade;
     }
-
+    public ClienteFacade getFac(){
+    
+        return getFacade();
+    }
     public Cliente prepareCreate() {
         selected = new Cliente();
         initializeEmbeddableKey();

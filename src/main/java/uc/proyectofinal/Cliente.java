@@ -88,7 +88,8 @@ public class Cliente implements Serializable {
     public String getCorreo() {
         return correo;
     }
-
+    
+    
     public void setCorreo(String correo) {
         this.correo = correo;
     }
@@ -96,7 +97,7 @@ public class Cliente implements Serializable {
     public Integer getIdCliente() {
         return idCliente;
     }
-
+    
     public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }

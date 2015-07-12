@@ -14,6 +14,7 @@ import javax.servlet.ServletContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
+
 @ManagedBean
 public class FileUploadView {
     String categoria;
@@ -51,6 +52,7 @@ public class FileUploadView {
         
        
     }
+    
     public void crearDirectorio(String ruta){
         File f=new File(ruta);
         if (!f.exists()) {

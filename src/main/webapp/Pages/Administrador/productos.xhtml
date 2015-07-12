@@ -83,12 +83,18 @@ and open the template in the editor.
             </h:form>
             <h:panelGrid columns="3" cellpadding="5">
                 <h:outputText value=""/>
-              
+
                 <h:form id="ImagenesListForm">
                     <p:galleria id="galeria" value="#{productoController.imagenes}" var="image" panelWidth="500" panelHeight="313" showCaption="true">
-                        <p:graphicImage name="demo/images/#{productoController.fuv.categoria}/#{productoController.fuv.id}/#{image}" alt="Image Description for #{image}" title="#{image}"/>
+                        <p:graphicImage name="/demo/images/#{productoController.fuv.categoria}/#{productoController.fuv.id}/#{image}" alt="Image Description for #{image}" title="#{image}"/>
                     </p:galleria>
-                </h:form>
+                </h:form >
+                <h:panelGrid columns="3" cellpadding="20" border="1">
+                    <h:form>
+                        <p:commandButton value="Actualizar Base de Datos" id="ajax" update="growl" actionListener="#{buttonView.buttonAction}" styleClass="ui-priority-primary" />
+
+                    </h:form>
+                </h:panelGrid>
                 <h:outputText></h:outputText>
             </h:panelGrid>
         </ui:define>
